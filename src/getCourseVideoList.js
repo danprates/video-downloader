@@ -105,7 +105,7 @@ module.exports = async (page, courseURL, type) => {
 
       let selectedVideo = await videoVariations.find(
         (vid) => vid.quality === process.env.VIDEO_QUALITY
-      );
+      ) ?? {};
 
       selectedVideo.filename = `${courseTitle}/${courseTitle} - ${index + 1}-${videoTitle}.mp4`;
 
