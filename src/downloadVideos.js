@@ -73,7 +73,7 @@ module.exports = async (videos) => {
         video.filename.length
       );
 
-      promises.push(
+      video.url && promises.push(
         downloadVideo(video.url, dir + "/" + filename.replace("/", "-"))
       );
       if (video.filenameSubtitles !== "") {
