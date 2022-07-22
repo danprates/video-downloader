@@ -129,11 +129,10 @@ module.exports = async (page, courseURL, type) => {
         page.waitForSelector(".list-item"),
         page.waitForNavigation(),
       ]);
-
     }
-    if (type !== "video") {
 
-      generateCompletePage(page, index, courseTitle, videoTitle);
+    if (type !== "video") {
+      await generateCompletePage(page, index, courseTitle, videoTitle);
     }
 
     bar1.update(index + 1);
