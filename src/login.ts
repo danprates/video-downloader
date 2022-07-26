@@ -1,6 +1,6 @@
 const delay = require('delay')
 
-module.exports = async (page, email, password) => {
+export default async function (page: any, email: string, password: string) {
   console.log('Trying to login...')
 
   page.goto('https://www.vuemastery.com/', { waitUntil: 'networkidle2' })

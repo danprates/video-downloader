@@ -1,13 +1,10 @@
-const delay = require('delay')
-const puppeteer = require('puppeteer')
-const fse = require('fs-extra')
-const fs = require('fs')
-const path = require('path')
+import fse from 'fs-extra'
+import path from 'path'
+import puppeteer from 'puppeteer'
+import getCourseVideoList from './getCourseVideoList'
+import login from './login'
 
-const login = require('./login')
-const getCourseVideoList = require('./getCourseVideoList')
-
-const run = async (courses, type) => {
+export const run = async (courses: any, type: string) => {
   const browser = await puppeteer.launch({ headless: true })
   const page = await browser.newPage()
   await page.setViewport({
@@ -16,7 +13,7 @@ const run = async (courses, type) => {
   })
 
   const videos = []
-  await login(page, process.env.EMAIL, process.env.PASSWORD)
+  await login(page, process.env.EMAIL ?? '', process.env.PASSWORD ?? '')
   for (let index = 0; index < courses.length; index++) {
     let courseVideos = []
     try {
@@ -53,8 +50,4 @@ const run = async (courses, type) => {
   console.log('Browser closed.')
 
   // await downloadVideos(videos);
-}
-
-module.exports = {
-  run
 }

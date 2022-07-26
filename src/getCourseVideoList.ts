@@ -1,9 +1,9 @@
-const delay = require('delay')
-const cliProgress = require('cli-progress')
-const fse = require('fs-extra')
-const path = require('path')
+import cliProgress from 'cli-progress'
+import delay from 'delay'
+import fse from 'fs-extra'
+import path from 'path'
 
-module.exports = async (page, courseURL, type) => {
+export default async function (page: any, courseURL: string, type: string) {
   const delayInMS = 5000
   let videos = []
   page.setDefaultNavigationTimeout(50000)
@@ -13,7 +13,7 @@ module.exports = async (page, courseURL, type) => {
   await delay(delayInMS)
 
   const courseTitle = (
-    await page.evaluate(() => document.querySelector('h2.title').textContent)
+    await page.evaluate(() => document.querySelector('h2.title')?.textContent)
   )
     .replace(/[/\\?%*:|"<>]/g, '-')
     .replace('w-', 'with')
@@ -52,7 +52,7 @@ module.exports = async (page, courseURL, type) => {
     await page.waitForSelector('iframe')
 
     const videoTitle = (
-      await page.evaluate(() => document.querySelector('h1.title').textContent)
+      await page.evaluate(() => document.querySelector('h1.title')?.textContent)
     ).replace(/[/\\?%*:|"<>]/g, '-')
 
     if (type !== 'complete') {
@@ -60,7 +60,7 @@ module.exports = async (page, courseURL, type) => {
         () =>
           Array.from(
             document.body.querySelectorAll('iframe[src]'),
-            ({ src }) => src
+            ({ src }: any) => src
           )[0]
       )
 
@@ -70,7 +70,7 @@ module.exports = async (page, courseURL, type) => {
           () =>
             Array.from(
               document.body.querySelectorAll('iframe[src]'),
-              ({ src }) => src
+              ({ src }: any) => src
             )[0]
         )
       }
@@ -79,7 +79,7 @@ module.exports = async (page, courseURL, type) => {
         () =>
           Array.from(
             document.body.querySelectorAll('iframe[src]'),
-            ({ src }) => src
+            ({ src }: any) => src
           )[0]
       )
 
@@ -103,12 +103,12 @@ module.exports = async (page, courseURL, type) => {
       let finString = newString.split(']},"lang":"en","sentry":')[0]
       let videoVariations = await eval(`[${finString}]`)
 
-      let selectedVideo = {}
+      let selectedVideo: any = {}
 
       if (videoVariations.length) {
         selectedVideo =
           videoVariations.find(
-            (vid) => vid.quality === process.env.VIDEO_QUALITY
+            (vid: any) => vid.quality === process.env.VIDEO_QUALITY
           ) ?? videoVariations[0]
       }
 
@@ -176,7 +176,12 @@ module.exports = async (page, courseURL, type) => {
 //   );
 // };
 
-const generateCompletePage = async (page, index, courseTitle, videoTitle) => {
+const generateCompletePage = async (
+  page: any,
+  index: number,
+  courseTitle: string,
+  videoTitle: string
+) => {
   await page.evaluate(() =>
     document.querySelectorAll('.announcement-bar').forEach((e) => e.remove())
   )
