@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --inspect=0.0.0.0:9229 index.js"
+    "start": "node --inspect=0.0.0.0:9229 index.js",
+    "build": "rimraf dist && tsc"
   },
   "keywords": [],
   "author": "",
