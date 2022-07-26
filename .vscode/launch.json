@@ -11,8 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      // "program": "${workspaceFolder}/index.js"
-      "program": "${workspaceFolder}/scripts/download-from-json.js"
+      "program": "${workspaceFolder}/index.js"
     }
   ]
 }
