@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --inspect=0.0.0.0:9229 index.js",
+    "start": "ts-node src",
     "build": "rimraf dist && tsc",
     "test": "jest --passWithNoTests --runInBand --silent --no-cache --detectOpenHandles",
     "test:watch": "npm test -- --watch",
