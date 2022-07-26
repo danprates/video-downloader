@@ -103,13 +103,17 @@ module.exports = async (page, courseURL, type) => {
       let finString = newString.split(']},"lang":"en","sentry":')[0];
       let videoVariations = await eval(`[${finString}]`);
 
-      let selectedVideo = await videoVariations.find(
-        (vid) => vid.quality === process.env.VIDEO_QUALITY
-      ) ?? {};
+      let selectedVideo = {}
+
+      if(videoVariations.length) {
+        selectedVideo = videoVariations.find(
+          (vid) => vid.quality === process.env.VIDEO_QUALITY
+        ) ?? videoVariations[0];
+      }
 
       selectedVideo.filename = `${courseTitle}/${courseTitle} - ${index + 1}-${videoTitle}.mp4`;
 
-      let newStringSubtitles = content.split(`"text_tracks":[{`)[1].split(`"lang":"en","url":"`)[1];
+      let newStringSubtitles = content.split(`"text_tracks":[{`)[1]?.split(`"lang":"en","url":"`)[1] ?? '';
       selectedVideo.urlSubtitles = "";
       selectedVideo.filenameSubtitles = "";
       if (!newStringSubtitles) {
