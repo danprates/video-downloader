@@ -182,7 +182,7 @@ const generateCompletePage = async (page, index, courseTitle, videoTitle) => {
 
   const contentFormatted = content.replaceAll('src="/images/', 'src="https://www.vuemastery.com/images/')
 
-  let fileName = `complete-${courseTitle} - ${index + 1}-${videoTitle}.html`;
+  let fileName = `${courseTitle} - ${index + 1}-${videoTitle}.html`;
   fse.outputFile(
     path.join(
       __dirname,
