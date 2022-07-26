@@ -6,7 +6,7 @@
     "target": "ES2022",
     "module": "CommonJS",
     "baseUrl": "src",
-    "lib": ["ES6"],
+    "lib": ["DOM"],
     "removeComments": true,
     "resolveJsonModule": true,
     "allowJs": true,
