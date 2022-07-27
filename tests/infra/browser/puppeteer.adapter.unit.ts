@@ -33,4 +33,10 @@ describe('PuppeteerAdapter', () => {
       width: 1920
     })
   })
+
+  it('should pass correct params to dependency when close is called', async () => {
+    const browser = await PuppeteerAdapter.open()
+    await browser.close()
+    expect(puppeteerSpy.close).toHaveBeenNthCalledWith(1)
+  })
 })
