@@ -3,7 +3,11 @@ import delay from 'delay'
 import fse from 'fs-extra'
 import path from 'path'
 
-export default async function (page: any, courseURL: string, type: string) {
+export const getCourseVideoList = async (
+  page: any,
+  courseURL: string,
+  type: string
+) => {
   const delayInMS = 5000
   let videos = []
   page.setDefaultNavigationTimeout(50000)

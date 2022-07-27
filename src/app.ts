@@ -1,8 +1,8 @@
 import fse from 'fs-extra'
 import path from 'path'
 import puppeteer from 'puppeteer'
-import getCourseVideoList from './getCourseVideoList'
-import login from './login'
+import { getCourseVideoList } from './getCourseVideoList'
+import { login } from './login'
 
 export const run = async (courses: any, type: string) => {
   const browser = await puppeteer.launch({ headless: true })
