@@ -59,4 +59,11 @@ describe('PuppeteerAdapter', () => {
     await browser.click('any_selector')
     expect(pageSpy.click).toHaveBeenNthCalledWith(1, 'any_selector')
   })
+
+  it('should pass correct params to dependency when type is called', async () => {
+    const browser = await PuppeteerAdapter.open()
+    await browser.type('any_selector', 'any_value')
+    expect(pageSpy.focus).toHaveBeenNthCalledWith(1, 'any_selector')
+    expect(pageSpy.keyboard.type).toHaveBeenNthCalledWith(1, 'any_value')
+  })
 })
