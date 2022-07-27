@@ -27,8 +27,7 @@ export interface GetTextContent {
 }
 
 export interface Browser
-  extends OpenBrowser,
-    CloseBrowser,
+  extends CloseBrowser,
     VisitUrl,
     WaitFor,
     Click,

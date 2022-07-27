@@ -7,9 +7,6 @@ export class PuppeteerAdapter implements Browser {
     private readonly browser: puppeteer.Browser,
     private readonly page: puppeteer.Page
   ) {}
-  open(): Promise<Browser> {
-    throw new Error('Method not implemented.')
-  }
   static async open(): Promise<Browser> {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
