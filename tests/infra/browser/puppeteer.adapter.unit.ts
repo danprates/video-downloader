@@ -66,4 +66,10 @@ describe('PuppeteerAdapter', () => {
     expect(pageSpy.focus).toHaveBeenNthCalledWith(1, 'any_selector')
     expect(pageSpy.keyboard.type).toHaveBeenNthCalledWith(1, 'any_value')
   })
+
+  it('should pass correct params to dependency when getTextContent is called', async () => {
+    const browser = await PuppeteerAdapter.open()
+    await browser.getTextContent('any_selector')
+    expect(pageSpy.evaluate).toHaveBeenCalledTimes(1)
+  })
 })
