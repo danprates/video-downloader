@@ -39,4 +39,12 @@ describe('PuppeteerAdapter', () => {
     await browser.close()
     expect(puppeteerSpy.close).toHaveBeenNthCalledWith(1)
   })
+
+  it('should pass correct params to dependency when visit is called', async () => {
+    const browser = await PuppeteerAdapter.open()
+    await browser.visit('some_url')
+    expect(pageSpy.goto).toHaveBeenNthCalledWith(1, 'some_url', {
+      waitUntil: 'networkidle2'
+    })
+  })
 })
