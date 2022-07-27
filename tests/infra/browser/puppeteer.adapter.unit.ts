@@ -53,4 +53,10 @@ describe('PuppeteerAdapter', () => {
     await browser.waitFor('any_selector')
     expect(pageSpy.waitForSelector).toHaveBeenNthCalledWith(1, 'any_selector')
   })
+
+  it('should pass correct params to dependency when click is called', async () => {
+    const browser = await PuppeteerAdapter.open()
+    await browser.click('any_selector')
+    expect(pageSpy.click).toHaveBeenNthCalledWith(1, 'any_selector')
+  })
 })
