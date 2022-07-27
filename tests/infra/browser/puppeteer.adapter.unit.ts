@@ -8,7 +8,7 @@ const pageSpy = {
   click: jest.fn(),
   focus: jest.fn(),
   keyboard: { type: jest.fn() },
-  evaluate: jest.fn().mockResolvedValue('some_text')
+  evaluate: jest.fn().mockResolvedValue('any_text')
 }
 
 const puppeteerSpy = {
@@ -42,9 +42,15 @@ describe('PuppeteerAdapter', () => {
 
   it('should pass correct params to dependency when visit is called', async () => {
     const browser = await PuppeteerAdapter.open()
-    await browser.visit('some_url')
-    expect(pageSpy.goto).toHaveBeenNthCalledWith(1, 'some_url', {
+    await browser.visit('any_url')
+    expect(pageSpy.goto).toHaveBeenNthCalledWith(1, 'any_url', {
       waitUntil: 'networkidle2'
     })
+  })
+
+  it('should pass correct params to dependency when waitFor is called', async () => {
+    const browser = await PuppeteerAdapter.open()
+    await browser.waitFor('any_selector')
+    expect(pageSpy.waitForSelector).toHaveBeenNthCalledWith(1, 'any_selector')
   })
 })
