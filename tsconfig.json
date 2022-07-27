@@ -6,6 +6,7 @@
     "target": "ES2022",
     "module": "CommonJS",
     "baseUrl": "src",
+    "rootDirs": ["src", "tests"],
     "lib": ["DOM"],
     "removeComments": true,
     "resolveJsonModule": true,
@@ -15,8 +16,12 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/tests/*": ["../tests/*"],
+      "@/*": ["*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "./tests"]
+  "include": ["src", "tests"],
+  "exclude": ["node_modules"]
 }
