@@ -7,8 +7,8 @@ export class PuppeteerAdapter implements Browser {
     private readonly browser: puppeteer.Browser,
     private readonly page: puppeteer.Page
   ) {}
-  static async open(): Promise<Browser> {
-    const browser = await puppeteer.launch()
+  static async open(headless = true): Promise<Browser> {
+    const browser = await puppeteer.launch({ headless })
     const page = await browser.newPage()
     page.setDefaultNavigationTimeout(50000)
     await page.setViewport({
