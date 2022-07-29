@@ -1,7 +1,3 @@
-export interface OpenBrowser {
-  open(): Promise<Browser>
-}
-
 export interface CloseBrowser {
   close(): Promise<void>
 }
